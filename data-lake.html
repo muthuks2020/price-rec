@@ -1,0 +1,284 @@
+<!-- 
+====================================
+FILE: data-lake.html
+====================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Lake - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="data-lake.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text"><span>Agentic Pricing</span></div>
+            <div class="header-title">
+                <span data-lucide="database" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                AI Data Lake & Processing Pipeline
+            </div>
+        </div>
+        <div class="header-right">
+            <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Priya Kumar</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>Dashboard</a></li>
+            <li class="nav-item"><a href="products.html"><span data-lucide="package" style="width: 18px; height: 18px;"></span>Products</a></li>
+            <li class="nav-item"><a href="recommendations.html"><span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>Recommendations</a></li>
+            <li class="nav-item"><a href="approval.html"><span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>Approval Queue</a></li>
+            <li class="nav-item"><a href="data-lake.html" class="active"><span data-lucide="database" style="width: 18px; height: 18px;"></span>Data Lake</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="card glass ai-status-banner">
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <div class="ai-badge">AI Pipeline Active</div>
+                <div style="flex: 1; min-width: 300px;">
+                    <strong>Data Sources:</strong> 7 Active | 
+                    <strong>Processing Rate:</strong> <span id="processingRate">12.4K</span> records/sec |
+                    <span class="ai-thinking"><span></span><span></span><span></span></span>
+                    Real-time ingestion
+                </div>
+                <div class="metric-live">
+                    <span data-lucide="activity" style="width: 16px; height: 16px; color: #28a745;"></span>
+                    <strong>Live</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1 class="page-title">
+                <span data-lucide="database" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                Data Lake & AI Pipeline
+            </h1>
+            <p class="page-subtitle">Real-time data ingestion, processing, and AI model training pipeline</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="git-branch" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    Live Data Flow Pipeline
+                </h3>
+                <span class="ai-badge" style="font-size: 0.8rem; padding: 0.3rem 0.8rem;">Processing</span>
+            </div>
+            
+            <div class="data-flow-container" id="dataFlowViz">
+                <div class="data-source" style="top: 10%; left: 5%;" data-source="Sales DB" title="Sales Database">
+                    <span data-lucide="database" style="width: 40px; height: 40px;"></span>
+                </div>
+                <div class="data-source" style="top: 30%; left: 5%;" data-source="Competitor API" title="Competitor API">
+                    <span data-lucide="globe" style="width: 40px; height: 40px;"></span>
+                </div>
+                <div class="data-source" style="top: 50%; left: 5%;" data-source="Inventory" title="Inventory System">
+                    <span data-lucide="package" style="width: 40px; height: 40px;"></span>
+                </div>
+                <div class="data-source" style="top: 70%; left: 5%;" data-source="Market Data" title="Market Data Feed">
+                    <span data-lucide="trending-up" style="width: 40px; height: 40px;"></span>
+                </div>
+                <div class="data-source" style="top: 90%; left: 5%;" data-source="Customer Analytics" title="Customer Analytics">
+                    <span data-lucide="users" style="width: 40px; height: 40px;"></span>
+                </div>
+
+                <div class="ai-processor">
+                    <div class="processor-inner">
+                        <span data-lucide="cpu" style="width: 60px; height: 60px; margin-bottom: 0.5rem;"></span>
+                        <div style="font-weight: bold;">AI Engine</div>
+                        <div style="font-size: 0.8rem; opacity: 0.9;">Processing</div>
+                    </div>
+                </div>
+
+                <div class="output-zone">
+                    <div style="text-align: center; color: white;">
+                        <span data-lucide="check-circle" style="width: 50px; height: 50px; margin-bottom: 0.5rem;"></span>
+                        <div style="font-weight: bold; font-size: 1.1rem;">Recommendations</div>
+                        <div style="font-size: 0.85rem; opacity: 0.9;">Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="pipeline-stage">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span data-lucide="download-cloud" style="width: 40px; height: 40px; color: #4daae8;"></span>
+                    <div>
+                        <h4 style="color: #4daae8; margin: 0;">Data Ingestion</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin: 0;">Real-time collection</p>
+                    </div>
+                </div>
+                <div class="data-stream"></div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        <span>Records/sec:</span>
+                        <strong id="ingestionRate">12,483</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span>Sources:</span>
+                        <strong>7 Active</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pipeline-stage">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span data-lucide="filter" style="width: 40px; height: 40px; color: #ff9900;"></span>
+                    <div>
+                        <h4 style="color: #ff9900; margin: 0;">Data Cleaning</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin: 0;">Validation & enrichment</p>
+                    </div>
+                </div>
+                <div class="data-stream"></div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        <span>Quality Score:</span>
+                        <strong id="qualityScore">98.7%</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span>Anomalies:</span>
+                        <strong style="color: #dc3545;" id="anomalyCount">3</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pipeline-stage">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span data-lucide="brain" style="width: 40px; height: 40px; color: #28a745;"></span>
+                    <div>
+                        <h4 style="color: #28a745; margin: 0;">AI Processing</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin: 0;">Model inference</p>
+                    </div>
+                </div>
+                <div class="data-stream"></div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        <span>Predictions/sec:</span>
+                        <strong id="predictionRate">847</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span>Avg Latency:</span>
+                        <strong id="latency">12ms</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pipeline-stage">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span data-lucide="save" style="width: 40px; height: 40px; color: #146eb4;"></span>
+                    <div>
+                        <h4 style="color: #146eb4; margin: 0;">Storage & Output</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin: 0;">Recommendations</p>
+                    </div>
+                </div>
+                <div class="data-stream"></div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        <span>Total Stored:</span>
+                        <strong id="totalStored">2.4M</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span>Active Recs:</span>
+                        <strong style="color: #28a745;">30</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="network" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    AI Model Neural Network
+                </h3>
+            </div>
+            <div class="neural-network" id="neuralNet"></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="activity" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Real-Time Agent Activity
+                    </h3>
+                    <span class="metric-live">
+                        <span data-lucide="radio" style="width: 14px; height: 14px;"></span>
+                        Live
+                    </span>
+                </div>
+                <div id="agentActivityFeed" style="max-height: 400px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="zap" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Data Lake Metrics
+                    </h3>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Storage Utilization</span>
+                            <strong id="storageUtil">67%</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="storageProgress" style="width: 67%; background: linear-gradient(90deg, #4daae8, #146eb4);"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Processing Capacity</span>
+                            <strong id="processingCap">82%</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="processingProgress" style="width: 82%; background: linear-gradient(90deg, #ff9900, #ff7700);"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Model Accuracy</span>
+                            <strong id="modelAccuracy">94.3%</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="accuracyProgress" style="width: 94%; background: linear-gradient(90deg, #28a745, #1e7e34);"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem; background: linear-gradient(135deg, rgba(77, 170, 232, 0.1), rgba(20, 110, 180, 0.1)); border-radius: 8px;">
+                        <h4 style="margin-bottom: 1rem; color: #146eb4;">System Health</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <div style="font-size: 0.85rem; color: #666;">Uptime</div>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #28a745;">99.9%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.85rem; color: #666;">Latency</div>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #4daae8;">12ms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="data-lake.js"></script>
+</body>
+</html>
