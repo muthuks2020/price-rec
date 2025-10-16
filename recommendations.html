@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text"><span>Agentic Pricing</span></div>
+            <div class="header-title">
+                <span data-lucide="sparkles" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                Price Recommendation Engine
+            </div>
+        </div>
+        <div class="header-right">
+            <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Priya Kumar</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>Dashboard</a></li>
+            <li class="nav-item"><a href="products.html"><span data-lucide="package" style="width: 18px; height: 18px;"></span>Products</a></li>
+            <li class="nav-item"><a href="recommendations.html" class="active"><span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>Recommendations</a></li>
+            <li class="nav-item"><a href="approval.html"><span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>Approval Queue</a></li>
+            <li class="nav-item"><a href="analytics.html"><span data-lucide="bar-chart-3" style="width: 18px; height: 18px;"></span>Analytics</a></li>
+            <li class="nav-item"><a href="data-lake.html"><span data-lucide="database" style="width: 18px; height: 18px;"></span>Data Lake</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">
+                <span data-lucide="sparkles" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                AI-Powered Recommendations
+            </h1>
+            <p class="page-subtitle">Review and manage pricing recommendations from the AI agent</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="card">
+            <div style="display: flex; gap: 1rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="filterRecommendations('all')">
+                    <span data-lucide="list" style="width: 16px; height: 16px;"></span>
+                    All (412)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="filterRecommendations('high')">
+                    <span data-lucide="trending-up" style="width: 16px; height: 16px;"></span>
+                    High Priority (87)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="filterRecommendations('price-increase')">
+                    <span data-lucide="arrow-up" style="width: 16px; height: 16px;"></span>
+                    Price Increase (124)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="filterRecommendations('price-decrease')">
+                    <span data-lucide="arrow-down" style="width: 16px; height: 16px;"></span>
+                    Price Decrease (288)
+                </button>
+                <button class="btn btn-accent btn-sm" style="margin-left: auto;">
+                    <span data-lucide="refresh-cw" style="width: 16px; height: 16px;"></span>
+                    Refresh Analysis
+                </button>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-success">
+                    <span data-lucide="check-check" style="width: 18px; height: 18px;"></span>
+                    Bulk Approve High Confidence
+                </button>
+                <button class="btn btn-accent">
+                    <span data-lucide="send" style="width: 18px; height: 18px;"></span>
+                    Send to Approval Queue
+                </button>
+                <button class="btn btn-secondary">
+                    <span data-lucide="download" style="width: 18px; height: 18px;"></span>
+                    Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- AI Insights Card -->
+        <div class="card" style="background: linear-gradient(135deg, #4daae8 0%, #146eb4 100%); color: white;">
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <span data-lucide="brain" style="width: 50px; height: 50px; color: white;"></span>
+                <div style="flex: 1;">
+                    <h3 style="color: white; margin: 0 0 0.5rem 0;">
+                        <span data-lucide="sparkles" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></span>
+                        AI Agent Analysis
+                    </h3>
+                    <p style="margin: 0; opacity: 0.95;">Latest analysis completed 2 hours ago. The AI agent has identified 87 high-confidence opportunities with potential revenue impact of $247,892. Market conditions remain favorable for Electronics and Home categories.</p>
+                </div>
+                <button class="btn btn-light btn-sm">
+                    <span data-lucide="info" style="width: 16px; height: 16px;"></span>
+                    View Methodology
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span data-lucide="target" style="width: 24px; height: 24px; color: #28a745;"></span>
+                <div class="stat-value">87</div>
+                <div class="stat-label">High Confidence</div>
+                <div class="stat-sublabel">
+                    <span data-lucide="arrow-up" style="width: 12px; height: 12px;"></span>
+                    +12 from last week
+                </div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="dollar-sign" style="width: 24px; height: 24px; color: #4daae8;"></span>
+                <div class="stat-value">$247K</div>
+                <div class="stat-label">Potential Revenue</div>
+                <div class="stat-sublabel">
+                    <span data-lucide="trending-up" style="width: 12px; height: 12px;"></span>
+                    18% increase
+                </div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="percent" style="width: 24px; height: 24px; color: #ff9500;"></span>
+                <div class="stat-value">4.2%</div>
+                <div class="stat-label">Avg Price Change</div>
+                <div class="stat-sublabel">Within optimal range</div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="clock" style="width: 24px; height: 24px; color: #007aff;"></span>
+                <div class="stat-value">2h</div>
+                <div class="stat-label">Last Updated</div>
+                <div class="stat-sublabel">Next: 4 hours</div>
+            </div>
+        </div>
+
+        <!-- Recommendations List -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="list" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    Active Recommendations
+                </h3>
+                <div style="display: flex; gap: 0.5rem;">
+                    <select class="btn btn-secondary btn-sm" style="padding: 0.5rem;">
+                        <option>Sort by Confidence</option>
+                        <option>Sort by Impact</option>
+                        <option>Sort by Date</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Recommendation Cards -->
+            <div id="recommendationsList"></div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sample recommendation data
+        const recommendations = [
+            {
+                id: 'REC-001',
+                product: 'Premium Wireless Headphones',
+                sku: 'PRD-001',
+                category: 'Electronics',
+                currentPrice: 199.99,
+                recommendedPrice: 179.99,
+                confidence: 0.92,
+                priority: 'high',
+                reason: 'Competitor pricing analysis shows 15% lower prices for similar products. Market demand remains strong.',
+                impact: '$12,450',
+                date: '2025-10-16'
+            },
+            {
+                id: 'REC-002',
+                product: 'Professional Camera Lens',
+                sku: 'PRD-003',
+                category: 'Photography',
+                currentPrice: 899.99,
+                recommendedPrice: 849.99,
+                confidence: 0.95,
+                priority: 'high',
+                reason: 'Seasonal demand patterns indicate optimal time for price reduction. Historical data shows 23% increase in units sold.',
+                impact: '$24,780',
+                date: '2025-10-16'
+            },
+            {
+                id: 'REC-003',
+                product: 'Ergonomic Office Chair',
+                sku: 'PRD-004',
+                category: 'Furniture',
+                currentPrice: 459.99,
+                recommendedPrice: 489.99,
+                confidence: 0.85,
+                priority: 'medium',
+                reason: 'Supply chain improvements and reduced competition justify price increase. Customer reviews indicate high satisfaction.',
+                impact: '$8,920',
+                date: '2025-10-15'
+            },
+            {
+                id: 'REC-004',
+                product: 'Smart Fitness Watch',
+                sku: 'PRD-002',
+                category: 'Wearables',
+                currentPrice: 349.99,
+                recommendedPrice: 329.99,
+                confidence: 0.88,
+                priority: 'medium',
+                reason: 'New competitor entry at lower price point. Recommend temporary reduction to maintain market share.',
+                impact: '$15,340',
+                date: '2025-10-15'
+            },
+            {
+                id: 'REC-005',
+                product: 'Portable Bluetooth Speaker',
+                sku: 'PRD-005',
+                category: 'Electronics',
+                currentPrice: 79.99,
+                recommendedPrice: 74.99,
+                confidence: 0.90,
+                priority: 'high',
+                reason: 'High inventory levels and seasonal clearance opportunity. Price reduction expected to accelerate sales velocity.',
+                impact: '$6,780',
+                date: '2025-10-16'
+            }
+        ];
+
+        function populateRecommendations() {
+            const container = document.getElementById('recommendationsList');
+            container.innerHTML = recommendations.map(rec => {
+                const change = ((rec.recommendedPrice - rec.currentPrice) / rec.currentPrice * 100).toFixed(1);
+                const changeClass = change > 0 ? 'positive' : 'negative';
+                const changeIcon = change > 0 ? 'arrow-up' : 'arrow-down';
+                const priorityColor = rec.priority === 'high' ? '#28a745' : '#ff9500';
+                
+                return `
+                    <div class="recommendation-card" style="border-left: 4px solid ${priorityColor}; padding: 1.5rem; margin-bottom: 1rem; background: #f8f9fa; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 300px;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                                    <h4 style="margin: 0;">${rec.product}</h4>
+                                    <span class="badge badge-${rec.priority === 'high' ? 'success' : 'warning'}">
+                                        <span data-lucide="flag" style="width: 12px; height: 12px;"></span>
+                                        ${rec.priority.toUpperCase()}
+                                    </span>
+                                </div>
+                                <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                    <span data-lucide="package" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></span>
+                                    ${rec.sku} • ${rec.category} • ${rec.date}
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                        <span data-lucide="lightbulb" style="width: 16px; height: 16px; color: #4daae8;"></span>
+                                        <strong>AI Rationale:</strong>
+                                    </div>
+                                    <p style="margin: 0; color: #333;">${rec.reason}</p>
+                                </div>
+                            </div>
+                            <div style="text-align: right; min-width: 200px;">
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <div style="background: white; padding: 1rem; border-radius: 6px;">
+                                        <div style="color: #666; font-size: 0.85rem;">Current Price</div>
+                                        <div style="font-size: 1.3rem; font-weight: bold; color: #333;">$${rec.currentPrice.toFixed(2)}</div>
+                                    </div>
+                                    <div style="text-align: center; padding: 0.5rem;">
+                                        <span data-lucide="${changeIcon}" style="width: 20px; height: 20px; color: ${change > 0 ? '#28a745' : '#dc3545'};"></span>
+                                        <span style="font-weight: bold; color: ${change > 0 ? '#28a745' : '#dc3545'};">${change > 0 ? '+' : ''}${change}%</span>
+                                    </div>
+                                    <div style="background: linear-gradient(135deg, #4daae8 0%, #146eb4 100%); color: white; padding: 1rem; border-radius: 6px;">
+                                        <div style="font-size: 0.85rem; opacity: 0.9;">Recommended</div>
+                                        <div style="font-size: 1.3rem; font-weight: bold;">$${rec.recommendedPrice.toFixed(2)}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd; flex-wrap: wrap; gap: 1rem;">
+                            <div style="display: flex; gap: 2rem;">
+                                <div>
+                                    <div style="color: #666; font-size: 0.85rem;">Confidence</div>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <span data-lucide="shield-check" style="width: 16px; height: 16px; color: #28a745;"></span>
+                                        <strong>${(rec.confidence * 100).toFixed(0)}%</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="color: #666; font-size: 0.85rem;">Revenue Impact</div>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <span data-lucide="dollar-sign" style="width: 16px; height: 16px; color: #4daae8;"></span>
+                                        <strong>${rec.impact}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success btn-sm" onclick="approveRecommendation('${rec.id}')">
+                                    <span data-lucide="check" style="width: 14px; height: 14px;"></span>
+                                    Approve
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="viewDetails('${rec.sku}')">
+                                    <span data-lucide="eye" style="width: 14px; height: 14px;"></span>
+                                    Details
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="rejectRecommendation('${rec.id}')">
+                                    <span data-lucide="x" style="width: 14px; height: 14px;"></span>
+                                    Reject
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        function filterRecommendations(type) {
+            console.log('Filter:', type);
+            // Implement filter logic
+        }
+
+        function approveRecommendation(id) {
+            console.log('Approve:', id);
+            alert(`Recommendation ${id} approved!`);
+        }
+
+        function viewDetails(sku) {
+            window.location.href = `product-detail.html?sku=${sku}`;
+        }
+
+        function rejectRecommendation(id) {
+            console.log('Reject:', id);
+            alert(`Recommendation ${id} rejected!`);
+        }
+
+        // Initialize on page load
+        populateRecommendations();
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text"><span>Agentic Pricing</span></div>
+            <div class="header-title">
+                <span data-lucide="package" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                Price Recommendation Engine
+            </div>
+        </div>
+        <div class="header-right">
+            <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Priya Kumar</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>Dashboard</a></li>
+            <li class="nav-item"><a href="products.html" class="active"><span data-lucide="package" style="width: 18px; height: 18px;"></span>Products</a></li>
+            <li class="nav-item"><a href="recommendations.html"><span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>Recommendations</a></li>
+            <li class="nav-item"><a href="approval.html"><span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>Approval Queue</a></li>
+            <li class="nav-item"><a href="analytics.html"><span data-lucide="bar-chart-3" style="width: 18px; height: 18px;"></span>Analytics</a></li>
+            <li class="nav-item"><a href="data-lake.html"><span data-lucide="database" style="width: 18px; height: 18px;"></span>Data Lake</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">
+                <span data-lucide="package" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                Product Catalog
+            </h1>
+            <p class="page-subtitle">Browse and analyze all products with pricing recommendations</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <div class="filter-item">
+                    <label>
+                        <span data-lucide="search" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Search
+                    </label>
+                    <input type="text" id="searchInput" placeholder="Search products, SKU, rationale...">
+                </div>
+                <div class="filter-item">
+                    <label>
+                        <span data-lucide="tag" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Category
+                    </label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>
+                        <span data-lucide="trending-up" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Price Range
+                    </label>
+                    <select id="priceFilter">
+                        <option value="all">All Ranges</option>
+                        <option value="low">Under $100</option>
+                        <option value="mid">$100-$500</option>
+                        <option value="high">Over $500</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>
+                        <span data-lucide="filter" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Status
+                    </label>
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending Review</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span data-lucide="package" style="width: 24px; height: 24px; color: #4daae8;"></span>
+                <div class="stat-value">2,847</div>
+                <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="sparkles" style="width: 24px; height: 24px; color: #28a745;"></span>
+                <div class="stat-value">412</div>
+                <div class="stat-label">Recommendations</div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="trending-up" style="width: 24px; height: 24px; color: #ff9500;"></span>
+                <div class="stat-value">$247K</div>
+                <div class="stat-label">Revenue Impact</div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="percent" style="width: 24px; height: 24px; color: #007aff;"></span>
+                <div class="stat-value">87%</div>
+                <div class="stat-label">Approval Rate</div>
+            </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="list" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    All Products
+                </h3>
+                <button class="btn btn-accent btn-sm">
+                    <span data-lucide="download" style="width: 16px; height: 16px;"></span>
+                    Export
+                </button>
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Current Price</th>
+                            <th>Recommended</th>
+                            <th>Change</th>
+                            <th>Confidence</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sample product data
+        const products = [
+            {
+                sku: 'PRD-001',
+                name: 'Premium Wireless Headphones',
+                category: 'Electronics',
+                currentPrice: 199.99,
+                recommendedPrice: 179.99,
+                confidence: 0.92,
+                status: 'pending'
+            },
+            {
+                sku: 'PRD-002',
+                name: 'Smart Fitness Watch',
+                category: 'Wearables',
+                currentPrice: 349.99,
+                recommendedPrice: 329.99,
+                confidence: 0.88,
+                status: 'approved'
+            },
+            {
+                sku: 'PRD-003',
+                name: 'Professional Camera Lens',
+                category: 'Photography',
+                currentPrice: 899.99,
+                recommendedPrice: 849.99,
+                confidence: 0.95,
+                status: 'pending'
+            },
+            {
+                sku: 'PRD-004',
+                name: 'Ergonomic Office Chair',
+                category: 'Furniture',
+                currentPrice: 459.99,
+                recommendedPrice: 489.99,
+                confidence: 0.85,
+                status: 'pending'
+            },
+            {
+                sku: 'PRD-005',
+                name: 'Portable Bluetooth Speaker',
+                category: 'Electronics',
+                currentPrice: 79.99,
+                recommendedPrice: 74.99,
+                confidence: 0.90,
+                status: 'approved'
+            }
+        ];
+
+        // Populate products table
+        function populateProductsTable() {
+            const tbody = document.getElementById('productsTableBody');
+            tbody.innerHTML = products.map(product => {
+                const change = ((product.recommendedPrice - product.currentPrice) / product.currentPrice * 100).toFixed(1);
+                const changeClass = change > 0 ? 'positive' : 'negative';
+                const statusClass = product.status === 'approved' ? 'success' : product.status === 'rejected' ? 'danger' : 'warning';
+                
+                return `
+                    <tr>
+                        <td>${product.sku}</td>
+                        <td><strong>${product.name}</strong></td>
+                        <td>${product.category}</td>
+                        <td>$${product.currentPrice.toFixed(2)}</td>
+                        <td>$${product.recommendedPrice.toFixed(2)}</td>
+                        <td class="change ${changeClass}">${change > 0 ? '+' : ''}${change}%</td>
+                        <td>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: ${product.confidence * 100}%"></div>
+                                <span>${(product.confidence * 100).toFixed(0)}%</span>
+                            </div>
+                        </td>
+                        <td><span class="badge badge-${statusClass}">${product.status}</span></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="viewDetails('${product.sku}')">
+                                <span data-lucide="eye" style="width: 14px; height: 14px;"></span>
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            // Reinitialize icons after table update
+            lucide.createIcons();
+        }
+
+        function viewDetails(sku) {
+            window.location.href = `product-detail.html?sku=${sku}`;
+        }
+
+        // Initialize on page load
+        populateProductsTable();
+
+        // Add search and filter functionality
+        document.getElementById('searchInput')?.addEventListener('input', function(e) {
+            console.log('Search:', e.target.value);
+            // Implement search logic
+        });
+
+        document.getElementById('categoryFilter')?.addEventListener('change', function(e) {
+            console.log('Category filter:', e.target.value);
+            // Implement filter logic
+        });
+    </script>
+</body>
+</html>

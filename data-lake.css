@@ -1,0 +1,282 @@
+/* 
+====================================
+FILE: data-lake.css
+====================================
+*/
+
+.data-flow-container {
+    position: relative;
+    height: 600px;
+    background: linear-gradient(135deg, #0a1929 0%, #1a2332 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.data-source {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4daae8, #146eb4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    animation: pulse 2s ease-in-out infinite, breathe 4s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(77, 170, 232, 0.6);
+    z-index: 5;
+}
+
+.data-source::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    border: 2px solid rgba(77, 170, 232, 0.5);
+    border-radius: 50%;
+    animation: ripple 3s ease-out infinite;
+}
+
+.data-source:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 50px rgba(77, 170, 232, 1);
+    z-index: 10;
+}
+
+@keyframes ripple {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+.data-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #4daae8;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #4daae8;
+    pointer-events: none;
+    z-index: 3;
+}
+
+@keyframes flowPath {
+    0% { opacity: 1; transform: translate(0, 0) scale(1); }
+    50% { opacity: 0.5; transform: translate(var(--dx), var(--dy)) scale(1.5); }
+    100% { opacity: 0; transform: translate(calc(var(--dx) * 2), calc(var(--dy) * 2)) scale(0.5); }
+}
+
+.ai-processor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #ff9900, #ff7700);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotate 10s linear infinite, breathe 3s ease-in-out infinite;
+    box-shadow: 0 0 60px rgba(255, 153, 0, 0.8);
+    z-index: 10;
+}
+
+.ai-processor::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 3px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: rotate 5s linear infinite reverse;
+}
+
+.ai-processor::after {
+    content: '';
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border: 2px dotted rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: rotate 8s linear infinite;
+}
+
+.processor-inner {
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.output-zone {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: glow 2s ease-in-out infinite;
+    box-shadow: 0 0 40px rgba(40, 167, 69, 0.6);
+    z-index: 5;
+}
+
+.pipeline-stage {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(77, 170, 232, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pipeline-stage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(77, 170, 232, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.pipeline-stage:hover::before {
+    left: 100%;
+}
+
+.pipeline-stage:hover {
+    border-color: rgba(77, 170, 232, 1);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(77, 170, 232, 0.3);
+}
+
+.data-stream {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #4daae8, transparent);
+    background-size: 200% 100%;
+    animation: stream 2s linear infinite;
+    border-radius: 2px;
+    margin: 1rem 0;
+}
+
+@keyframes stream {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.metric-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(77, 170, 232, 0.1);
+    border-radius: 8px;
+    animation: flash 2s ease-in-out infinite;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); box-shadow: 0 0 20px rgba(77, 170, 232, 0.5); }
+}
+
+.agent-activity {
+    position: relative;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(77, 170, 232, 0.05), rgba(20, 110, 180, 0.05));
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.agent-activity::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(77, 170, 232, 0.2), transparent);
+    animation: scan 3s linear infinite;
+}
+
+.agent-activity:hover {
+    border-left-color: #4daae8;
+    background: linear-gradient(135deg, rgba(77, 170, 232, 0.1), rgba(20, 110, 180, 0.1));
+    transform: translateX(5px);
+}
+
+@keyframes scan {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+.neural-network {
+    position: relative;
+    height: 300px;
+    margin: 2rem 0;
+    background: linear-gradient(135deg, rgba(77, 170, 232, 0.03), rgba(20, 110, 180, 0.03));
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.neuron {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #4daae8, #146eb4);
+    border-radius: 50%;
+    animation: neuronPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(77, 170, 232, 0.8);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.neuron:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 30px rgba(77, 170, 232, 1);
+    z-index: 10;
+}
+
+@keyframes neuronPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+.synapse {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4daae8, transparent);
+    transform-origin: left center;
+    animation: synapseFlow 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes synapseFlow {
+    0%, 100% { opacity: 0.3; box-shadow: none; }
+    50% { opacity: 1; box-shadow: 0 0 10px #4daae8; }
+}
+
+@media (max-width: 768px) {
+    .data-flow-container { height: 450px; }
+    .data-source { width: 70px; height: 70px; }
+    .ai-processor { width: 140px; height: 140px; }
+    .output-zone { width: 100px; height: 100px; right: 20px; }
+    .neural-network { height: 200px; }
+    .neuron { width: 30px; height: 30px; }
+}

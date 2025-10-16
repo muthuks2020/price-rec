@@ -1,0 +1,501 @@
+<!-- 
+====================================
+FILE: index.html (UPDATED)
+====================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Pricing Engine - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-animations.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text"><span>Agentic Pricing</span></div>
+            <div class="header-title">
+                <span data-lucide="brain-circuit" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                AI-Powered Price Recommendation Engine
+            </div>
+        </div>
+        <div class="header-right">
+            <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Priya Kumar</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index.html" class="active">
+                    <span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">
+                    <span data-lucide="package" style="width: 18px; height: 18px;"></span>
+                    Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="recommendations.html">
+                    <span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>
+                    Recommendations
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="approval.html">
+                    <span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>
+                    Approval Queue
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="analytics.html">
+                    <span data-lucide="bar-chart-3" style="width: 18px; height: 18px;"></span>
+                    Analytics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="data-lake.html">
+                    <span data-lucide="database" style="width: 18px; height: 18px;"></span>
+                    Data Lake
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="card glass ai-status-banner">
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <div class="ai-badge">AI Agent Active</div>
+                <div style="flex: 1; min-width: 300px;">
+                    <strong>Last Analysis:</strong> 2 hours ago | 
+                    <strong>Next Update:</strong> In 4 hours |
+                    <span class="ai-thinking"><span></span><span></span><span></span></span>
+                    Processing real-time market data
+                </div>
+                <button class="btn btn-accent btn-sm">
+                    <span data-lucide="refresh-cw" style="width: 16px; height: 16px;"></span>
+                    Force Update
+                </button>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1 class="page-title">
+                <span data-lucide="trending-up" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                Dashboard Overview
+            </h1>
+            <p class="page-subtitle">Real-time pricing intelligence powered by autonomous AI agents</p>
+        </div>
+
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <div class="card">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-primary">
+                    <span data-lucide="wand-2" style="width: 18px; height: 18px;"></span>
+                    Run New Analysis
+                </button>
+                <button class="btn btn-success">
+                    <span data-lucide="check-check" style="width: 18px; height: 18px;"></span>
+                    Bulk Approve High Confidence
+                </button>
+                <button class="btn btn-accent">
+                    <span data-lucide="download" style="width: 18px; height: 18px;"></span>
+                    Export Report
+                </button>
+                <button class="btn btn-secondary">
+                    <span data-lucide="settings" style="width: 18px; height: 18px;"></span>
+                    Configure AI Agent
+                </button>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="pie-chart" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Recommendations by Type
+                    </h3>
+                </div>
+                <canvas id="recommendationChart"></canvas>
+                <div class="ai-insight">
+                    <span data-lucide="info" style="width: 16px; height: 16px; display: inline; vertical-align: middle; color: var(--primary-blue);"></span>
+                    <strong>AI Insight:</strong> 50% of products show price increase potential based on demand elasticity
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="bar-chart-3" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Revenue Impact by Category
+                    </h3>
+                </div>
+                <canvas id="categoryChart"></canvas>
+                <div class="ai-insight">
+                    <span data-lucide="trending-up" style="width: 16px; height: 16px; display: inline; vertical-align: middle; color: var(--success);"></span>
+                    <strong>Top Performer:</strong> Outerwear shows highest revenue potential (+18.2%)
+                </div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="map-pin" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Recommendations by Region
+                    </h3>
+                </div>
+                <canvas id="regionChart"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="gauge" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Confidence Score Distribution
+                    </h3>
+                </div>
+                <canvas id="confidenceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="activity" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    AI Agent Activity Feed
+                </h3>
+                <span class="ai-badge" style="font-size: 0.8rem; padding: 0.3rem 0.8rem;">Live</span>
+            </div>
+            <div id="activityFeed" style="max-height: 200px; overflow-y: auto;"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="zap" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    High Priority Recommendations
+                </h3>
+                <a href="recommendations.html" class="btn btn-primary btn-sm">
+                    View All
+                    <span data-lucide="arrow-right" style="width: 16px; height: 16px;"></span>
+                </a>
+            </div>
+            <div id="highPriorityList"></div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="ai-animations.js"></script>
+    <script>
+        lucide.createIcons();
+
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setActiveNav('index');
+            loadStats();
+            loadCharts();
+            loadHighPriorityRecommendations();
+            loadActivityFeed();
+            setTimeout(() => lucide.createIcons(), 100);
+        });
+
+        function loadStats() {
+            const stats = calculateStats(pricingData);
+            const statsHTML = `
+                <div class="stat-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div class="stat-label">
+                                <span data-lucide="package-check" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                                Total Products Analyzed
+                            </div>
+                            <div class="stat-value">${stats.total}</div>
+                            <div class="stat-change positive">
+                                <span data-lucide="trending-up" style="width: 14px; height: 14px;"></span>
+                                Active monitoring
+                            </div>
+                        </div>
+                        <span data-lucide="box" style="width: 40px; height: 40px; color: var(--primary-blue); opacity: 0.3;"></span>
+                    </div>
+                </div>
+                
+                <div class="stat-card accent">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div class="stat-label">
+                                <span data-lucide="arrow-up-circle" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                                Price Increase Opportunities
+                            </div>
+                            <div class="stat-value">${stats.increase}</div>
+                            <div class="stat-change positive">
+                                <span data-lucide="percent" style="width: 14px; height: 14px;"></span>
+                                ${formatPercentage((stats.increase/stats.total)*100, 0)} of total
+                            </div>
+                        </div>
+                        <span data-lucide="trending-up" style="width: 40px; height: 40px; color: var(--accent-orange); opacity: 0.3;"></span>
+                    </div>
+                </div>
+                
+                <div class="stat-card secondary">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div class="stat-label">
+                                <span data-lucide="dollar-sign" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                                Expected Revenue Impact
+                            </div>
+                            <div class="stat-value">${formatPercentage(stats.totalRevImpact, 1)}</div>
+                            <div class="stat-change positive">
+                                <span data-lucide="zap" style="width: 14px; height: 14px;"></span>
+                                If all approved
+                            </div>
+                        </div>
+                        <span data-lucide="dollar-sign" style="width: 40px; height: 40px; color: var(--secondary-blue); opacity: 0.3;"></span>
+                    </div>
+                </div>
+                
+                <div class="stat-card success">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div class="stat-label">
+                                <span data-lucide="badge-check" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                                High Confidence Recommendations
+                            </div>
+                            <div class="stat-value">${stats.highConfidence}</div>
+                            <div class="stat-change positive">
+                                <span data-lucide="sparkles" style="width: 14px; height: 14px;"></span>
+                                ${formatPercentage(stats.highConfidencePercent, 0)} confidence rate
+                            </div>
+                        </div>
+                        <span data-lucide="shield-check" style="width: 40px; height: 40px; color: var(--success); opacity: 0.3;"></span>
+                    </div>
+                </div>
+            `;
+            document.getElementById('statsGrid').innerHTML = statsHTML;
+            lucide.createIcons();
+        }
+
+        function loadCharts() {
+            const recData = pricingData.reduce((acc, item) => {
+                acc[item.Recommendation_Type] = (acc[item.Recommendation_Type] || 0) + 1;
+                return acc;
+            }, {});
+
+            new Chart(document.getElementById('recommendationChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(recData),
+                    datasets: [{
+                        data: Object.values(recData),
+                        backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
+                        borderWidth: 3,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { position: 'bottom', labels: { padding: 15, font: { size: 12, weight: 'bold' } } } }
+                }
+            });
+
+            const categoryData = pricingData.reduce((acc, item) => {
+                if (!acc[item.Category]) acc[item.Category] = 0;
+                if (item.Recommendation_Type !== 'Hold') {
+                    acc[item.Category] += item['Expected_Revenue_Impact_%'];
+                }
+                return acc;
+            }, {});
+
+            new Chart(document.getElementById('categoryChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(categoryData),
+                    datasets: [{
+                        label: 'Revenue Impact %',
+                        data: Object.values(categoryData),
+                        backgroundColor: 'rgba(77, 170, 232, 0.8)',
+                        borderColor: '#4daae8',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            const regionData = pricingData.reduce((acc, item) => {
+                acc[item.Region] = (acc[item.Region] || 0) + 1;
+                return acc;
+            }, {});
+
+            new Chart(document.getElementById('regionChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(regionData),
+                    datasets: [{
+                        label: 'Products',
+                        data: Object.values(regionData),
+                        backgroundColor: 'rgba(20, 110, 180, 0.8)',
+                        borderColor: '#146eb4',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true } }
+                }
+            });
+
+            const confidenceRanges = { 'High (0.8-1.0)': 0, 'Medium (0.6-0.8)': 0, 'Low (0-0.6)': 0 };
+            pricingData.forEach(item => {
+                if (item.Confidence_Score >= 0.8) confidenceRanges['High (0.8-1.0)']++;
+                else if (item.Confidence_Score >= 0.6) confidenceRanges['Medium (0.6-0.8)']++;
+                else confidenceRanges['Low (0-0.6)']++;
+            });
+
+            new Chart(document.getElementById('confidenceChart'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(confidenceRanges),
+                    datasets: [{
+                        data: Object.values(confidenceRanges),
+                        backgroundColor: ['#28a745', '#ffc107', '#6c757d'],
+                        borderWidth: 3,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        function loadActivityFeed() {
+            const activities = [
+                { icon: 'brain-circuit', text: 'AI Agent analyzed 30 products for pricing opportunities', time: '2 min ago', type: 'success' },
+                { icon: 'trending-up', text: 'Detected 15 price increase recommendations', time: '2 min ago', type: 'info' },
+                { icon: 'alert-circle', text: 'High demand surge in Outerwear category (North region)', time: '15 min ago', type: 'warning' },
+                { icon: 'check-circle', text: '5 recommendations auto-approved (high confidence)', time: '1 hour ago', type: 'success' },
+                { icon: 'refresh-cw', text: 'Market data refresh completed successfully', time: '2 hours ago', type: 'info' }
+            ];
+
+            const html = activities.map(activity => `
+                <div class="activity-item">
+                    <span data-lucide="${activity.icon}" style="width: 20px; height: 20px; color: var(--${activity.type === 'success' ? 'success' : activity.type === 'warning' ? 'warning' : 'primary-blue'});"></span>
+                    <div style="flex: 1;">
+                        <div>${activity.text}</div>
+                        <div style="font-size: 0.85rem; color: #666; margin-top: 0.25rem;">
+                            <span data-lucide="clock" style="width: 12px; height: 12px; display: inline; vertical-align: middle;"></span>
+                            ${activity.time}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('activityFeed').innerHTML = html;
+            lucide.createIcons();
+        }
+
+        function loadHighPriorityRecommendations() {
+            const highPriority = pricingData
+                .filter(p => p.Confidence_Score >= 0.8 && p.Recommendation_Type !== 'Hold')
+                .sort((a, b) => b['Expected_Revenue_Impact_%'] - a['Expected_Revenue_Impact_%'])
+                .slice(0, 5);
+
+            const html = highPriority.map(product => {
+                const priceChange = calculatePriceChange(product.Current_Price, product.Suggested_Price);
+                return `
+                    <div class="recommendation-card ${product.Recommendation_Type.toLowerCase()}">
+                        <div class="recommendation-header">
+                            <div>
+                                <div class="recommendation-product">
+                                    <span data-lucide="package" style="width: 18px; height: 18px; display: inline; vertical-align: middle; margin-right: 0.5rem;"></span>
+                                    ${product.Product_Name} (${product.SKU_ID})
+                                </div>
+                                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <span class="badge ${getRecommendationBadge(product.Recommendation_Type)}">${product.Recommendation_Type}</span>
+                                    <span class="badge ${getConfidenceBadge(product.Confidence_Score)}">${formatPercentage(product.Confidence_Score * 100, 0)} Confidence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recommendation-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Current Price</span>
+                                <span class="detail-value">${formatCurrency(product.Current_Price)}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Suggested Price</span>
+                                <span class="detail-value price-change">
+                                    ${formatCurrency(product.Suggested_Price)}
+                                    <span class="arrow ${getArrowClass(priceChange)}">${getArrowIcon(priceChange)}</span>
+                                    ${formatPercentage(Math.abs(priceChange), 1)}
+                                </span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Revenue Impact</span>
+                                <span class="detail-value" style="color: #28a745;">
+                                    +${formatPercentage(product['Expected_Revenue_Impact_%'], 2)}
+                                </span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Category / Region</span>
+                                <span class="detail-value">${product.Category} / ${product.Region}</span>
+                            </div>
+                        </div>
+                        <div class="rationale">
+                            <span data-lucide="lightbulb" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.5rem;"></span>
+                            <strong>AI Rationale:</strong> ${product.Agent_Rationale}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('highPriorityList').innerHTML = html;
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text">🤖 Agentic Pricing</div>
+            <div class="header-title">Price Recommendation Engine</div>
+        </div>
+        <div class="header-right">
+            <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Priya Kumar</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html">Dashboard</a></li>
+            <li class="nav-item"><a href="products.html">Products</a></li>
+            <li class="nav-item"><a href="recommendations.html">Recommendations</a></li>
+            <li class="nav-item"><a href="approval.html">Approval Queue</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div class="page-header">
+                <h1 class="page-title" id="productTitle">Product Analysis</h1>
+                <p class="page-subtitle" id="productSubtitle"></p>
+            </div>
+            <button class="btn btn-secondary" onclick="window.history.back()">← Back to Products</button>
+        </div>
+
+        <!-- Product Overview -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Product Overview</h3>
+                <div id="productBadges"></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div>
+                    <div class="stat-label">Product Name</div>
+                    <div class="stat-value" style="font-size: 1.3rem;" id="productName"></div>
+                </div>
+                <div>
+                    <div class="stat-label">Category</div>
+                    <div class="stat-value" style="font-size: 1.3rem;" id="productCategory"></div>
+                </div>
+                <div>
+                    <div class="stat-label">Region</div>
+                    <div class="stat-value" style="font-size: 1.3rem;" id="productRegion"></div>
+                </div>
+                <div>
+                    <div class="stat-label">Inventory Level</div>
+                    <div class="stat-value" style="font-size: 1.3rem;" id="productInventory"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Analysis -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Pricing Recommendation</h3>
+                </div>
+                <div id="pricingDetails"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Market Positioning</h3>
+                </div>
+                <canvas id="priceComparisonChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Detailed Metrics -->
+        <div class="stats-grid" id="metricsGrid"></div>
+
+        <!-- AI Agent Rationale -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🤖 AI Agent Analysis</h3>
+            </div>
+            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #4daae8;">
+                <h4 style="margin-bottom: 1rem; color: #146eb4;">Recommendation Rationale</h4>
+                <p id="agentRationale" style="font-size: 1.1rem; line-height: 1.8;"></p>
+            </div>
+        </div>
+
+        <!-- Advanced Analytics -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Demand Elasticity Analysis</h3>
+                </div>
+                <div id="elasticityAnalysis"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Revenue Impact Projection</h3>
+                </div>
+                <canvas id="impactChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card">
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="btn btn-secondary" onclick="window.history.back()">Cancel</button>
+                <button class="btn btn-danger" onclick="rejectRecommendation()">❌ Reject</button>
+                <button class="btn btn-success" onclick="approveRecommendation()">✓ Approve Recommendation</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        let currentProduct = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            currentProduct = getStoredProduct();
+            
+            if (!currentProduct) {
+                window.location.href = 'products.html';
+                return;
+            }
+
+            loadProductDetails();
+            loadPricingAnalysis();
+            loadMetrics();
+            loadCharts();
+        });
+
+        function loadProductDetails() {
+            document.getElementById('productTitle').textContent = `${currentProduct.Product_Name} Analysis`;
+            document.getElementById('productSubtitle').textContent = `SKU: ${currentProduct.SKU_ID}`;
+            
+            document.getElementById('productName').textContent = currentProduct.Product_Name;
+            document.getElementById('productCategory').textContent = currentProduct.Category;
+            document.getElementById('productRegion').textContent = currentProduct.Region;
+            document.getElementById('productInventory').textContent = formatNumber(currentProduct.Inventory_Level) + ' units';
+
+            const badgesHTML = `
+                <div style="display: flex; gap: 0.5rem;">
+                    <span class="badge ${getRecommendationBadge(currentProduct.Recommendation_Type)}">
+                        ${currentProduct.Recommendation_Type}
+                    </span>
+                    <span class="badge ${getConfidenceBadge(currentProduct.Confidence_Score)}">
+                        ${formatPercentage(currentProduct.Confidence_Score * 100, 0)} Confidence
+                    </span>
+                </div>
+            `;
+            document.getElementById('productBadges').innerHTML = badgesHTML;
+
+            document.getElementById('agentRationale').textContent = currentProduct.Agent_Rationale;
+        }
+
+        function loadPricingAnalysis() {
+            const priceChange = calculatePriceChange(currentProduct.Current_Price, currentProduct.Suggested_Price);
+            const priceChangeAbs = Math.abs(priceChange);
+
+            const html = `
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <div style="display: flex; justify-content: space-around; align-items: center;">
+                        <div style="text-align: center;">
+                            <div class="stat-label">Current Price</div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #146eb4;">
+                                ${formatCurrency(currentProduct.Current_Price)}
+                            </div>
+                        </div>
+                        <div style="font-size: 3rem; color: ${priceChange > 0 ? '#28a745' : '#dc3545'};">
+                            ${getArrowIcon(priceChange)}
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="stat-label">Suggested Price</div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: ${priceChange > 0 ? '#28a745' : '#dc3545'};">
+                                ${formatCurrency(currentProduct.Suggested_Price)}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: ${priceChange > 0 ? '#d4edda' : '#f8d7da'}; border-radius: 8px;">
+                        <div class="stat-label">Price Change</div>
+                        <div style="font-size: 2rem; font-weight: bold; color: ${priceChange > 0 ? '#155724' : '#721c24'};">
+                            ${priceChange > 0 ? '+' : ''}${formatPercentage(priceChange, 2)}
+                        </div>
+                        <div style="margin-top: 0.5rem; color: ${priceChange > 0 ? '#155724' : '#721c24'};">
+                            (${priceChange > 0 ? '+' : ''}${formatCurrency(currentProduct.Suggested_Price - currentProduct.Current_Price)})
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('pricingDetails').innerHTML = html;
+        }
+
+        function loadMetrics() {
+            const html = `
+                <div class="stat-card">
+                    <div class="stat-label">Competitor Price</div>
+                    <div class="stat-value">${formatCurrency(currentProduct.Competitor_Price)}</div>
+                    <div class="stat-change ${currentProduct.Suggested_Price < currentProduct.Competitor_Price ? 'positive' : 'negative'}">
+                        ${currentProduct.Suggested_Price < currentProduct.Competitor_Price ? 'Below' : 'Above'} competition
+                    </div>
+                </div>
+                
+                <div class="stat-card accent">
+                    <div class="stat-label">Demand Index</div>
+                    <div class="stat-value">${formatNumber(currentProduct.Demand_Index, 2)}</div>
+                    <div class="stat-change ${currentProduct.Demand_Index > 1 ? 'positive' : 'negative'}">
+                        ${currentProduct.Demand_Index > 1 ? 'High' : 'Low'} demand
+                    </div>
+                </div>
+                
+                <div class="stat-card secondary">
+                    <div class="stat-label">Price Elasticity</div>
+                    <div class="stat-value">${formatNumber(currentProduct.Elasticity, 2)}</div>
+                    <div class="stat-change">
+                        ${Math.abs(currentProduct.Elasticity) > 1 ? 'Elastic' : 'Inelastic'} demand
+                    </div>
+                </div>
+                
+                <div class="stat-card success">
+                    <div class="stat-label">Expected Revenue Impact</div>
+                    <div class="stat-value">${formatPercentage(currentProduct['Expected_Revenue_Impact_%'], 2)}</div>
+                    <div class="stat-change ${currentProduct['Expected_Revenue_Impact_%'] > 0 ? 'positive' : 'negative'}">
+                        ${currentProduct['Expected_Revenue_Impact_%'] > 0 ? 'Positive' : 'Negative'} impact
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('metricsGrid').innerHTML = html;
+
+            // Elasticity analysis
+            const elasticityHTML = `
+                <div style="padding: 1rem;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong>Elasticity Coefficient:</strong> ${formatNumber(currentProduct.Elasticity, 2)}
+                    </p>
+                    <p style="margin-bottom: 1rem;">
+                        This product has <strong>${Math.abs(currentProduct.Elasticity) > 1 ? 'elastic' : 'inelastic'}</strong> demand, 
+                        meaning price changes will have a <strong>${Math.abs(currentProduct.Elasticity) > 1 ? 'significant' : 'moderate'}</strong> 
+                        impact on quantity demanded.
+                    </p>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 4px;">
+                        <strong>Interpretation:</strong><br>
+                        ${Math.abs(currentProduct.Elasticity) > 1 
+                            ? 'A 1% price increase would lead to more than 1% decrease in demand. Price changes should be carefully considered.'
+                            : 'A 1% price increase would lead to less than 1% decrease in demand. Price optimization opportunity exists.'
+                        }
+                    </div>
+                </div>
+            `;
+            document.getElementById('elasticityAnalysis').innerHTML = elasticityHTML;
+        }
+
+        function loadCharts() {
+            // Price Comparison Chart
+            new Chart(document.getElementById('priceComparisonChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Current Price', 'Suggested Price', 'Competitor Price'],
+                    datasets: [{
+                        label: 'Price Comparison',
+                        data: [
+                            currentProduct.Current_Price,
+                            currentProduct.Suggested_Price,
+                            currentProduct.Competitor_Price
+                        ],
+                        backgroundColor: ['#146eb4', '#4daae8', '#ff9900']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Revenue Impact Chart
+            const currentRevenue = 100; // baseline
+            const projectedRevenue = currentRevenue + currentProduct['Expected_Revenue_Impact_%'];
+
+            new Chart(document.getElementById('impactChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Current', 'Projected'],
+                    datasets: [{
+                        label: 'Revenue Index',
+                        data: [currentRevenue, projectedRevenue],
+                        borderColor: currentProduct['Expected_Revenue_Impact_%'] > 0 ? '#28a745' : '#dc3545',
+                        backgroundColor: currentProduct['Expected_Revenue_Impact_%'] > 0 ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: Math.min(currentRevenue, projectedRevenue) - 5,
+                            max: Math.max(currentRevenue, projectedRevenue) + 5
+                        }
+                    }
+                }
+            });
+        }
+
+        function approveRecommendation() {
+            showToast(`Recommendation approved for ${currentProduct.Product_Name}`, 'success');
+            setTimeout(() => {
+                window.location.href = 'approval.html';
+            }, 1500);
+        }
+
+        function rejectRecommendation() {
+            if (confirm(`Are you sure you want to reject the recommendation for ${currentProduct.Product_Name}?`)) {
+                showToast(`Recommendation rejected for ${currentProduct.Product_Name}`, 'success');
+                setTimeout(() => {
+                    window.history.back();
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

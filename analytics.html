@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text"><span>Agentic Pricing</span></div>
+            <div class="header-title">
+                <span data-lucide="bar-chart-3" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                Price Recommendation Engine
+            </div>
+        </div>
+        <div class="header-right">
+           <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">R</div>
+                <span>Raj Patel</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>Dashboard</a></li>
+            <li class="nav-item"><a href="products.html"><span data-lucide="package" style="width: 18px; height: 18px;"></span>Products</a></li>
+            <li class="nav-item"><a href="recommendations.html"><span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>Recommendations</a></li>
+            <li class="nav-item"><a href="approval.html"><span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>Approval Queue</a></li>
+            <li class="nav-item"><a href="analytics.html" class="active"><span data-lucide="bar-chart-3" style="width: 18px; height: 18px;"></span>Analytics</a></li>
+            <li class="nav-item"><a href="data-lake.html"><span data-lucide="database" style="width: 18px; height: 18px;"></span>Data Lake</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">
+                <span data-lucide="bar-chart-3" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                Advanced Analytics
+            </h1>
+            <p class="page-subtitle">Deep insights into pricing patterns and market dynamics</p>
+        </div>
+
+        <!-- Analysis Controls -->
+        <div class="card">
+            <div class="filter-group">
+                <div class="filter-item">
+                    <label>
+                        <span data-lucide="calendar" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Analysis Period
+                    </label>
+                    <select id="periodSelect">
+                        <option value="current">Current Quarter</option>
+                        <option value="q1">Q1 2025</option>
+                        <option value="ytd">Year to Date</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>
+                        <span data-lucide="layers" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Comparison View
+                    </label>
+                    <select id="comparisonSelect">
+                        <option value="category">By Category</option>
+                        <option value="region">By Region</option>
+                        <option value="recommendation">By Recommendation Type</option>
+                    </select>
+                </div>
+                <div class="filter-item" style="align-self: flex-end;">
+                    <button class="btn btn-primary" onclick="refreshAnalytics()">
+                        <span data-lucide="refresh-cw" style="width: 16px; height: 16px;"></span>
+                        Refresh
+                    </button>
+                    <button class="btn btn-accent" onclick="exportAnalytics()">
+                        <span data-lucide="download" style="width: 16px; height: 16px;"></span>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="card" style="background: linear-gradient(135deg, #4daae8 0%, #146eb4 100%); color: white;">
+            <h3 style="color: white; margin-bottom: 1rem;">
+                <span data-lucide="lightbulb" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle;"></span>
+                Key Insights from AI Analysis
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 8px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">
+                        <span data-lucide="dollar-sign" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Optimal Price Range
+                    </div>
+                    <div style="font-size: 1.8rem; font-weight: bold;">$1,800 - $3,500</div>
+                    <div style="font-size: 0.85rem; opacity: 0.85; margin-top: 0.5rem;">Electronics Category</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 8px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">
+                        <span data-lucide="trending-up" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Best Performance
+                    </div>
+                    <div style="font-size: 1.8rem; font-weight: bold;">+24.5%</div>
+                    <div style="font-size: 0.85rem; opacity: 0.85; margin-top: 0.5rem;">Revenue Growth YoY</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 8px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">
+                        <span data-lucide="target" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></span>
+                        Recommendation Success
+                    </div>
+                    <div style="font-size: 1.8rem; font-weight: bold;">87.3%</div>
+                    <div style="font-size: 0.85rem; opacity: 0.85; margin-top: 0.5rem;">Approval Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span data-lucide="trending-up" style="width: 24px; height: 24px; color: #28a745;"></span>
+                <div class="stat-value">$1.2M</div>
+                <div class="stat-label">Revenue Impact</div>
+                <div class="stat-sublabel">
+                    <span data-lucide="arrow-up" style="width: 12px; height: 12px;"></span>
+                    +18% vs last quarter
+                </div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="percent" style="width: 24px; height: 24px; color: #4daae8;"></span>
+                <div class="stat-value">6.8%</div>
+                <div class="stat-label">Avg Margin Improvement</div>
+                <div class="stat-sublabel">Across all categories</div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="check-circle" style="width: 24px; height: 24px; color: #007aff;"></span>
+                <div class="stat-value">1,847</div>
+                <div class="stat-label">Recommendations Approved</div>
+                <div class="stat-sublabel">
+                    <span data-lucide="trending-up" style="width: 12px; height: 12px;"></span>
+                    Last 90 days
+                </div>
+            </div>
+            <div class="stat-card">
+                <span data-lucide="clock" style="width: 24px; height: 24px; color: #ff9500;"></span>
+                <div class="stat-value">2.3h</div>
+                <div class="stat-label">Avg Response Time</div>
+                <div class="stat-sublabel">
+                    <span data-lucide="arrow-down" style="width: 12px; height: 12px;"></span>
+                    -45% improvement
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="trending-up" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Revenue Trend
+                    </h3>
+                </div>
+                <canvas id="revenueChart" height="300"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="pie-chart" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Category Distribution
+                    </h3>
+                </div>
+                <canvas id="categoryChart" height="300"></canvas>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="activity" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Price Change Impact
+                    </h3>
+                </div>
+                <canvas id="impactChart" height="300"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span data-lucide="users" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Customer Response
+                    </h3>
+                </div>
+                <canvas id="customerChart" height="300"></canvas>
+            </div>
+        </div>
+
+        <!-- Detailed Metrics Table -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="table" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    Category Performance Breakdown
+                </h3>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Products</th>
+                            <th>Avg Price</th>
+                            <th>Recommendations</th>
+                            <th>Approval Rate</th>
+                            <th>Revenue Impact</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Electronics</strong></td>
+                            <td>847</td>
+                            <td>$324.50</td>
+                            <td>124</td>
+                            <td><span class="badge badge-success">89%</span></td>
+                            <td>$87,450</td>
+                            <td class="positive">
+                                <span data-lucide="trending-up" style="width: 16px; height: 16px;"></span>
+                                +15%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Home & Garden</strong></td>
+                            <td>623</td>
+                            <td>$156.80</td>
+                            <td>98</td>
+                            <td><span class="badge badge-success">91%</span></td>
+                            <td>$62,340</td>
+                            <td class="positive">
+                                <span data-lucide="trending-up" style="width: 16px; height: 16px;"></span>
+                                +12%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fashion</strong></td>
+                            <td>1,234</td>
+                            <td>$89.99</td>
+                            <td>156</td>
+                            <td><span class="badge badge-warning">78%</span></td>
+                            <td>$45,670</td>
+                            <td class="positive">
+                                <span data-lucide="trending-up" style="width: 16px; height: 16px;"></span>
+                                +8%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sports</strong></td>
+                            <td>456</td>
+                            <td>$127.30</td>
+                            <td>67</td>
+                            <td><span class="badge badge-success">85%</span></td>
+                            <td>$34,890</td>
+                            <td class="positive">
+                                <span data-lucide="trending-up" style="width: 16px; height: 16px;"></span>
+                                +6%
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Revenue Trend Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                datasets: [{
+                    label: 'Actual Revenue',
+                    data: [850, 920, 1050, 980, 1120, 1200, 1150, 1280, 1320],
+                    borderColor: '#4daae8',
+                    backgroundColor: 'rgba(77, 170, 232, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Projected Revenue',
+                    data: [800, 880, 950, 1000, 1080, 1150, 1180, 1220, 1250],
+                    borderColor: '#28a745',
+                    borderDash: [5, 5],
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Category Distribution Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Electronics', 'Home & Garden', 'Fashion', 'Sports', 'Other'],
+                datasets: [{
+                    data: [35, 25, 20, 12, 8],
+                    backgroundColor: [
+                        '#4daae8',
+                        '#28a745',
+                        '#ff9500',
+                        '#007aff',
+                        '#8e8e93'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+
+        // Price Change Impact Chart
+        const impactCtx = document.getElementById('impactChart').getContext('2d');
+        new Chart(impactCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Price Increase', 'Price Decrease', 'No Change'],
+                datasets: [{
+                    label: 'Revenue Impact ($K)',
+                    data: [450, 680, 190],
+                    backgroundColor: ['#28a745', '#4daae8', '#8e8e93']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Customer Response Chart
+        const customerCtx = document.getElementById('customerChart').getContext('2d');
+        new Chart(customerCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+                datasets: [{
+                    label: 'Purchase Rate',
+                    data: [65, 68, 72, 70, 75, 78, 82, 85],
+                    borderColor: '#28a745',
+                    backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Cart Abandonment',
+                    data: [35, 32, 28, 30, 25, 22, 18, 15],
+                    borderColor: '#dc3545',
+                    backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        function refreshAnalytics() {
+            alert('Refreshing analytics data...');
+        }
+
+        function exportAnalytics() {
+            alert('Exporting analytics report...');
+        }
+    </script>
+</body>
+</html>

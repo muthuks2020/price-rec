@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons - Modern icon library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Animated Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text">
+                <span>Agentic Pricing</span>
+            </div>
+            <div class="header-title">
+                <!-- Add icon before title -->
+                <span data-lucide="brain-circuit" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                AI-Powered Price Recommendation Engine
+            </div>
+        </div>
+        <div class="header-right">
+           <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Your Name</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index-enhanced.html">
+                    <span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="products-enhanced.html">
+                    <span data-lucide="package" style="width: 18px; height: 18px;"></span>
+                    Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="recommendations-enhanced.html">
+                    <span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>
+                    Recommendations
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="approval-enhanced.html" class="active">
+                    <span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>
+                    Approval Queue
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">
+                <!-- Icon in title for visual impact -->
+                <span data-lucide="your-icon-name" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                Your Page Title
+            </h1>
+            <p class="page-subtitle">Your page description with context</p>
+        </div>
+
+        <!-- AI Status Banner (Optional - use on key pages) -->
+        <div class="card glass" style="background: linear-gradient(135deg, rgba(77, 170, 232, 0.1), rgba(20, 110, 180, 0.1)); border-left: 4px solid var(--primary-blue); margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="ai-badge">
+                    AI Agent Active
+                </div>
+                <div style="flex: 1;">
+                    <strong>Status:</strong> Processing | 
+                    <span class="ai-thinking">
+                        <span></span><span></span><span></span>
+                    </span>
+                    Analyzing data...
+                </div>
+            </div>
+        </div>
+
+        <!-- Example: Stat Cards Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div class="stat-label">
+                            <span data-lucide="trending-up" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                            Your Metric Name
+                        </div>
+                        <div class="stat-value">1,234</div>
+                        <div class="stat-change positive">
+                            <span data-lucide="arrow-up" style="width: 14px; height: 14px;"></span>
+                            +12% increase
+                        </div>
+                    </div>
+                    <!-- Large background icon -->
+                    <span data-lucide="dollar-sign" style="width: 40px; height: 40px; color: var(--primary-blue); opacity: 0.3;"></span>
+                </div>
+            </div>
+            
+            <!-- Add more stat cards as needed -->
+        </div>
+
+        <!-- Example: Card with Content -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="bar-chart" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    Card Title
+                </h3>
+                <!-- Card actions -->
+                <button class="btn btn-primary btn-sm">
+                    <span data-lucide="plus" style="width: 16px; height: 16px;"></span>
+                    Add New
+                </button>
+            </div>
+            
+            <!-- Card content goes here -->
+            <p>Your card content...</p>
+        </div>
+
+        <!-- Example: Action Buttons -->
+        <div class="card">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-primary">
+                    <span data-lucide="play" style="width: 18px; height: 18px;"></span>
+                    Primary Action
+                </button>
+                <button class="btn btn-success">
+                    <span data-lucide="check" style="width: 18px; height: 18px;"></span>
+                    Success Action
+                </button>
+                <button class="btn btn-accent">
+                    <span data-lucide="zap" style="width: 18px; height: 18px;"></span>
+                    Important Action
+                </button>
+                <button class="btn btn-secondary">
+                    <span data-lucide="settings" style="width: 18px; height: 18px;"></span>
+                    Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Example: Recommendation Card -->
+        <div class="recommendation-card increase">
+            <div class="recommendation-header">
+                <div>
+                    <div class="recommendation-product">
+                        <span data-lucide="package" style="width: 18px; height: 18px; display: inline; vertical-align: middle; margin-right: 0.5rem;"></span>
+                        Item Name
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                        <span class="badge badge-increase">Increase</span>
+                        <span class="badge badge-high">High Confidence</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rationale">
+                <span data-lucide="lightbulb" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.5rem;"></span>
+                <strong>AI Rationale:</strong> Your AI-generated explanation here...
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary btn-sm">
+                    <span data-lucide="eye" style="width: 16px; height: 16px;"></span>
+                    View Details
+                </button>
+                <button class="btn btn-success btn-sm">
+                    <span data-lucide="check" style="width: 16px; height: 16px;"></span>
+                    Approve
+                </button>
+            </div>
+        </div>
+
+        <!-- Example: Progress Bar -->
+        <div class="card">
+            <h4>Loading Progress</h4>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        // Create particle background
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            createParticles();
+            
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Set active navigation
+            setActiveNav('yourpage'); // Change to match your page
+            
+            // Your page-specific initialization here
+            
+            // Reinitialize icons after dynamic content loads
+            setTimeout(() => lucide.createIcons(), 100);
+        });
+
+        // Add any page-specific JavaScript functions here
+    </script>
+</body>
+</html>
+
+<!-- 
+ICON REFERENCE - Common Lucide Icons to Use:
+
+Navigation & UI:
+- layout-dashboard, home, menu, x, chevron-down, chevron-right
+- search, filter, settings, more-horizontal
+
+Data & Analytics:
+- bar-chart, line-chart, pie-chart, trending-up, trending-down
+- activity, gauge, target, zap
+
+Actions:
+- plus, minus, edit, trash-2, copy, download, upload
+- check, check-circle, x-circle, alert-circle, alert-triangle
+- play, pause, refresh-cw, rotate-cw, repeat
+
+E-commerce/Business:
+- shopping-cart, package, box, tag, dollar-sign
+- credit-card, briefcase, building, users
+
+AI & Technology:
+- brain-circuit, sparkles, wand-2, cpu, database
+- server, cloud, wifi, lock, shield, eye
+
+Communication:
+- mail, message-square, bell, phone, video
+
+Files & Folders:
+- file, folder, file-text, image, file-spreadsheet
+
+Time:
+- clock, calendar, timer
+
+Full list: https://lucide.dev/icons/
+-->

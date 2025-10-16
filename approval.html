@@ -1,0 +1,442 @@
+<!-- 
+====================================
+FILE: approval.html (UPDATED)
+====================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approval Queue - Agentic Pricing Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-animations.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-text"><span>Agentic Pricing</span></div>
+            <div class="header-title">
+                <span data-lucide="check-circle" style="width: 20px; height: 20px; margin-right: 0.5rem;"></span>
+                Price Recommendation Engine
+            </div>
+        </div>
+        <div class="header-right">
+            <img src="shellkode.png" alt="Shellkode" class="shellkode-logo" width="126" height="23">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <span>Priya Kumar</span>
+                <span data-lucide="chevron-down" style="width: 16px; height: 16px;"></span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><span data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></span>Dashboard</a></li>
+            <li class="nav-item"><a href="products.html"><span data-lucide="package" style="width: 18px; height: 18px;"></span>Products</a></li>
+            <li class="nav-item"><a href="recommendations.html"><span data-lucide="sparkles" style="width: 18px; height: 18px;"></span>Recommendations</a></li>
+            <li class="nav-item"><a href="approval.html" class="active"><span data-lucide="check-circle" style="width: 18px; height: 18px;"></span>Approval Queue</a></li>
+            <li class="nav-item"><a href="analytics.html"><span data-lucide="bar-chart-3" style="width: 18px; height: 18px;"></span>Analytics</a></li>
+            <li class="nav-item"><a href="data-lake.html"><span data-lucide="database" style="width: 18px; height: 18px;"></span>Data Lake</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">
+                <span data-lucide="clipboard-check" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                Approval Workflow
+            </h1>
+            <p class="page-subtitle">Review and approve pricing changes before implementation</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">
+                    <span data-lucide="clock" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                    Pending Approvals
+                </div>
+                <div class="stat-value" id="pendingCount">21</div>
+                <div class="stat-change">
+                    <span data-lucide="alert-circle" style="width: 14px; height: 14px;"></span>
+                    Requires action
+                </div>
+            </div>
+            
+            <div class="stat-card success">
+                <div class="stat-label">
+                    <span data-lucide="check-check" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                    Auto-Approved (High Confidence)
+                </div>
+                <div class="stat-value" id="autoApprovedCount">18</div>
+                <div class="stat-change positive">
+                    <span data-lucide="sparkles" style="width: 14px; height: 14px;"></span>
+                    Ready for implementation
+                </div>
+            </div>
+            
+            <div class="stat-card accent">
+                <div class="stat-label">
+                    <span data-lucide="trending-up" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                    Total Revenue Impact
+                </div>
+                <div class="stat-value" id="totalImpact">+12.4%</div>
+                <div class="stat-change positive">
+                    <span data-lucide="arrow-up" style="width: 14px; height: 14px;"></span>
+                    Projected increase
+                </div>
+            </div>
+            
+            <div class="stat-card secondary">
+                <div class="stat-label">
+                    <span data-lucide="calendar" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.3rem;"></span>
+                    Implementation Date
+                </div>
+                <div class="stat-value" style="font-size: 1.3rem;">Oct 18, 2025</div>
+                <div class="stat-change">
+                    <span data-lucide="clock" style="width: 14px; height: 14px;"></span>
+                    2 days from now
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span data-lucide="workflow" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                    Approval Workflow Status
+                </h3>
+            </div>
+            <div style="display: flex; gap: 2rem; align-items: center; padding: 1rem;">
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span><span data-lucide="brain" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> AI Analysis</span>
+                        <span style="color: #28a745; font-weight: bold;">
+                            <span data-lucide="check" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> Complete
+                        </span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%; background: #28a745;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span><span data-lucide="user-check" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> Manager Review</span>
+                        <span style="color: #ff9900; font-weight: bold;">
+                            <span data-lucide="loader" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> In Progress
+                        </span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%; background: #ff9900;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span><span data-lucide="rocket" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> Implementation</span>
+                        <span style="color: #6c757d;">
+                            <span data-lucide="clock" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> Pending
+                        </span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span data-lucide="list-checks" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                            Priority Approval Queue
+                        </h3>
+                        <select id="queueFilter" class="btn btn-sm" style="padding: 0.4rem 1rem;">
+                            <option value="priority">High Priority</option>
+                            <option value="all">All Pending</option>
+                            <option value="low-confidence">Low Confidence</option>
+                        </select>
+                    </div>
+                    <div id="approvalQueue"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span data-lucide="zap" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                            Bulk Actions
+                        </h3>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-success" onclick="approveAllHighConfidence()">
+                            <span data-lucide="check-check" style="width: 18px; height: 18px;"></span>
+                            Approve All High Confidence (18)
+                        </button>
+                        <button class="btn btn-primary" onclick="scheduleImplementation()">
+                            <span data-lucide="calendar-plus" style="width: 18px; height: 18px;"></span>
+                            Schedule Implementation
+                        </button>
+                        <button class="btn btn-secondary" onclick="exportApprovalReport()">
+                            <span data-lucide="file-down" style="width: 18px; height: 18px;"></span>
+                            Export Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span data-lucide="chart-pie" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                            Impact Summary
+                        </h3>
+                    </div>
+                    <canvas id="impactSummaryChart"></canvas>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #e8f5e9; border-radius: 4px;">
+                        <div style="font-size: 0.9rem; color: #2e7d32; margin-bottom: 0.5rem;">
+                            <span data-lucide="dollar-sign" style="width: 16px; height: 16px; display: inline; vertical-align: middle;"></span>
+                            <strong>Estimated Monthly Revenue Increase</strong>
+                        </div>
+                        <div style="font-size: 2rem; font-weight: bold; color: #1b5e20;">
+                            $847,500
+                        </div>
+                        <div style="font-size: 0.85rem; color: #558b2f; margin-top: 0.5rem;">
+                            Based on approved recommendations
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span data-lucide="shield-alert" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></span>
+                            Risk Assessment
+                        </h3>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: #28a745; font-weight: bold;">
+                                    <span data-lucide="shield-check" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> Low Risk
+                                </span>
+                                <span>18 products</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%; background: #28a745;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: #ffc107; font-weight: bold;">
+                                    <span data-lucide="shield" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> Medium Risk
+                                </span>
+                                <span>9 products</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%; background: #ffc107;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: #dc3545; font-weight: bold;">
+                                    <span data-lucide="shield-x" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span> High Risk
+                                </span>
+                                <span>3 products</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10%; background: #dc3545;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: #fff3cd; border-radius: 4px; font-size: 0.9rem;">
+                            <span data-lucide="alert-triangle" style="width: 16px; height: 16px; display: inline; vertical-align: middle;"></span>
+                            <strong>Attention Required:</strong> 3 high-risk items need manual review
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="ai-animations.js"></script>
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNav('approval');
+            loadApprovalQueue();
+            loadImpactChart();
+            updateStats();
+            document.getElementById('queueFilter').addEventListener('change', loadApprovalQueue);
+            setTimeout(() => lucide.createIcons(), 100);
+        });
+
+        function updateStats() {
+            const stats = calculateStats(pricingData);
+            const highConfidence = pricingData.filter(p => 
+                p.Confidence_Score >= 0.8 && p.Recommendation_Type !== 'Hold'
+            ).length;
+            document.getElementById('pendingCount').textContent = stats.total - highConfidence;
+            document.getElementById('autoApprovedCount').textContent = highConfidence;
+        }
+
+        function loadApprovalQueue() {
+            const filter = document.getElementById('queueFilter').value;
+            let queue = [];
+
+            if (filter === 'priority') {
+                queue = pricingData
+                    .filter(p => p.Recommendation_Type !== 'Hold' && p['Expected_Revenue_Impact_%'] > 5)
+                    .sort((a, b) => b['Expected_Revenue_Impact_%'] - a['Expected_Revenue_Impact_%'])
+                    .slice(0, 10);
+            } else if (filter === 'low-confidence') {
+                queue = pricingData
+                    .filter(p => p.Confidence_Score < 0.8)
+                    .sort((a, b) => a.Confidence_Score - b.Confidence_Score)
+                    .slice(0, 10);
+            } else {
+                queue = pricingData.filter(p => p.Recommendation_Type !== 'Hold').slice(0, 10);
+            }
+
+            const html = queue.map((product, index) => {
+                const priceChange = calculatePriceChange(product.Current_Price, product.Suggested_Price);
+                const risk = product.Confidence_Score >= 0.8 ? 'Low' : 
+                            product.Confidence_Score >= 0.6 ? 'Medium' : 'High';
+                const riskColor = risk === 'Low' ? '#28a745' : 
+                                 risk === 'Medium' ? '#ffc107' : '#dc3545';
+
+                return `
+                    <div style="border-bottom: 1px solid #e0e0e0; padding: 1rem 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                            <div>
+                                <strong style="font-size: 1.1rem;">${index + 1}. ${product.Product_Name}</strong>
+                                <span style="color: #666; margin-left: 0.5rem;">(${product.SKU_ID})</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <span class="badge ${getRecommendationBadge(product.Recommendation_Type)}">
+                                    ${product.Recommendation_Type}
+                                </span>
+                                <span class="badge" style="background: ${riskColor}; color: white;">
+                                    ${risk} Risk
+                                </span>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0.75rem 0; font-size: 0.9rem;">
+                            <div>
+                                <span style="color: #666;">Current:</span>
+                                <strong>${formatCurrency(product.Current_Price)}</strong>
+                            </div>
+                            <div>
+                                <span style="color: #666;">Suggested:</span>
+                                <strong style="color: ${priceChange > 0 ? '#28a745' : '#dc3545'};">
+                                    ${formatCurrency(product.Suggested_Price)}
+                                </strong>
+                            </div>
+                            <div>
+                                <span style="color: #666;">Change:</span>
+                                <strong>${priceChange > 0 ? '+' : ''}${formatPercentage(priceChange, 1)}</strong>
+                            </div>
+                            <div>
+                                <span style="color: #666;">Impact:</span>
+                                <strong style="color: #28a745;">
+                                    +${formatPercentage(product['Expected_Revenue_Impact_%'], 2)}
+                                </strong>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 0.75rem;">
+                            <span data-lucide="lightbulb" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></span>
+                            ${product.Agent_Rationale}
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                            <button class="btn btn-secondary btn-sm" onclick="viewQueueItem('${product.SKU_ID}')">
+                                <span data-lucide="eye" style="width: 16px; height: 16px;"></span>
+                                View Details
+                            </button>
+                            ${risk === 'High' ? 
+                                '<button class="btn btn-danger btn-sm" onclick="flagForReview(\'' + product.SKU_ID + '\')"><span data-lucide="flag" style="width: 16px; height: 16px;"></span> Flag for Review</button>' : 
+                                '<button class="btn btn-success btn-sm" onclick="quickApprove(\'' + product.SKU_ID + '\')"><span data-lucide="check" style="width: 16px; height: 16px;"></span> Quick Approve</button>'
+                            }
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('approvalQueue').innerHTML = html || '<p style="padding: 2rem; text-align: center; color: #666;">No items in queue</p>';
+            lucide.createIcons();
+        }
+
+        function loadImpactChart() {
+            const data = {
+                increase: pricingData.filter(p => p.Recommendation_Type === 'Increase').length,
+                decrease: pricingData.filter(p => p.Recommendation_Type === 'Decrease').length,
+                hold: pricingData.filter(p => p.Recommendation_Type === 'Hold').length
+            };
+
+            new Chart(document.getElementById('impactSummaryChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Price Increases', 'Price Decreases', 'Hold'],
+                    datasets: [{
+                        data: [data.increase, data.decrease, data.hold],
+                        backgroundColor: ['#28a745', '#dc3545', '#ffc107']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        function viewQueueItem(skuId) {
+            const product = pricingData.find(p => p.SKU_ID === skuId);
+            if (product) {
+                storeProduct(product);
+                window.location.href = 'product-detail.html';
+            }
+        }
+
+        function quickApprove(skuId) {
+            const product = pricingData.find(p => p.SKU_ID === skuId);
+            showToast(`Quick approved: ${product.Product_Name}`, 'success');
+            setTimeout(loadApprovalQueue, 500);
+        }
+
+        function flagForReview(skuId) {
+            const product = pricingData.find(p => p.SKU_ID === skuId);
+            showToast(`Flagged for manual review: ${product.Product_Name}`, 'success');
+        }
+
+        function approveAllHighConfidence() {
+            const count = pricingData.filter(p => 
+                p.Confidence_Score >= 0.8 && p.Recommendation_Type !== 'Hold'
+            ).length;
+
+            if (confirm(`Approve all ${count} high confidence recommendations?`)) {
+                showToast(`Approved ${count} high confidence recommendations`, 'success');
+                setTimeout(() => {
+                    document.getElementById('autoApprovedCount').textContent = '0';
+                    document.getElementById('pendingCount').textContent = '12';
+                }, 1000);
+            }
+        }
+
+        function scheduleImplementation() {
+            showToast('Implementation scheduled for October 18, 2025', 'success');
+        }
+
+        function exportApprovalReport() {
+            showToast('Approval report exported successfully', 'success');
+        }
+    </script>
+</body>
+</html>
